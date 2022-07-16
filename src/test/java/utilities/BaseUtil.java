@@ -96,7 +96,7 @@ public class BaseUtil {
                         //driver.set(new RemoteWebDriver(new URL("http://127.0.0.1:4446/wd/hub"), capFF));
                         break;
                     case "":
-                        throw new Exception("browser parameter should be either \"chrome \\ safari \\ firefox\" in testng.xml");
+                        throw new Exception("browser parameter should be either \"chrome \\firefox\" in testng.xml");
                 }
                 driver.set(new RemoteWebDriver(new URL("http://127.0.0.1:4445"), cap));
                 driver.get().manage().window().maximize();
