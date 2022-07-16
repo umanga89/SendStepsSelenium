@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite thread-count="2" name="workspace-Automation-suite" verbose="1" parallel="tests" >
+<suite name="workspace-Automation-suite" verbose="1"  >
     <listeners>
         <listener class-name="listeners.TestListenerImpl" />
         <listener class-name="listeners.AnnotationTransformer" />
@@ -10,16 +10,6 @@
         <parameter name="env" value="dev"/>
         <!-- configure browser as chrome / safari / firefox -->
         <parameter name="browser" value="chrome"/>
-        <classes>
-            <class name="tests.DatacomTests" />
-        </classes>
-    </test>
-
-    <test name="firefox_test_run" >
-        <!-- configure env as dev / stg -->
-        <parameter name="env" value="dev"/>
-        <!-- configure browser as chrome / safari / firefox -->
-        <parameter name="browser" value="firefox"/>
         <classes>
             <class name="tests.DatacomTests" />
         </classes>
