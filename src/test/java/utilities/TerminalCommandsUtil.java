@@ -3,6 +3,7 @@ package utilities;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Locale;
 
 public class TerminalCommandsUtil {
 
@@ -26,8 +27,10 @@ public class TerminalCommandsUtil {
                     Thread.sleep(5000);
                     break;
                 }
+                if (line.toLowerCase().contains("error")) {
+                    System.exit(0);
+                }
             }
-            System.out.println("Selenium grid is running...");
         } catch (Exception e) {
             e.printStackTrace();
         }
