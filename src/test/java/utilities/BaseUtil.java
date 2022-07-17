@@ -33,21 +33,6 @@ public class BaseUtil {
     public static ExtentTest suite;
     public static ExtentTest test;
 
-    @BeforeSuite
-    public void startDocker() throws Exception {
-        try {
-            System.out.println("Executing before suite===================================================");
-            TerminalCommandsUtil.runTerminalCommand("docker compose up", "Node has been added");
-        }catch (Exception e){
-            throw e;
-        }
-    }
-
-    @AfterSuite
-    public void stopDocker() throws Exception {
-        TerminalCommandsUtil.runTerminalCommand("docker compose down", "cancelled");
-    }
-
     @BeforeMethod
     @Parameters("browser")
     public void launchBrowser(String browser) throws Exception{
@@ -74,31 +59,16 @@ public class BaseUtil {
                 DesiredCapabilities cap = new DesiredCapabilities();
                 switch (browser) {
                     case "chrome":
-                        //System.setProperty("webdriver.chrome.driver", base_directory + configProperties.getProperty("chrome.driver.path"));
+                        System.setProperty("webdriver.chrome.driver", base_directory + configProperties.getProperty("chrome.driver.path"));
                         WebDriverManager.chromedriver().setup();
-//                        //disable chrome notifications
-//                        ChromeOptions ops = new ChromeOptions();
-//                        ops.addArguments("--disable-notifications");
-//                        driver.set(new ChromeDriver(ops));
-//                        break;
-                        cap = DesiredCapabilities.chrome();
-                        //cap.setPlatform(Platform.LINUX);
-                        //driver.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), cap));
-                        break;
-//                    case "safari":
-//                        driver.set(new SafariDriver());
-//                        break;
-                    case "firefox":
-                        //System.setProperty("webdriver.gecko.driver", base_directory + configProperties.getProperty("firefox.driver.path"));
-                        WebDriverManager.firefoxdriver().setup();
-                        cap = DesiredCapabilities.firefox();
-                        cap.setPlatform(Platform.LINUX);
-                        //driver.set(new RemoteWebDriver(new URL("http://127.0.0.1:4446/wd/hub"), capFF));
+                        //disable chrome notifications
+                        ChromeOptions ops = new ChromeOptions();
+                        ops.addArguments("--disable-notifications");
+                        driver.set(new ChromeDriver(ops));
                         break;
                     case "":
-                        throw new Exception("browser parameter should be either \"chrome \\firefox\" in testng.xml");
+                        throw new Exception("browser parameter should be \"chrome\" in testng.xml");
                 }
-                driver.set(new RemoteWebDriver(new URL("http://127.0.0.1:4445"), cap));
                 driver.get().manage().window().maximize();
             }else{
                 throw new Exception("browser parameter is not configured in testng.xml");

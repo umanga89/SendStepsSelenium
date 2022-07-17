@@ -16,34 +16,25 @@ public class LandingPage {
         PageFactory.initElements(driver,this);
     }
 
-    @FindBy(xpath = "//button[contains(@class,'main-menu-btn')]")
+    @FindBy(id = "sntLogin")
     @CacheLookup
-    WebElement btn_main_menu;
+    WebElement btn_login;
 
-    @FindBy(xpath = "//span[contains(text(),'Payees')]/parent::a")
+    @FindBy(xpath = "//li[contains(@id,'menu-item')]//a[contains(text(),'Pricing')]")
     @CacheLookup
-    WebElement btn_main_menu_payees;
+    WebElement btn_pricing;
 
-    @FindBy(xpath = "//span[contains(text(),'Pay or transfer')]/parent::button")
-    @CacheLookup
-    WebElement btn_main_menu_pay_or_transfer;
-
-    public boolean validateIfMainMenuButtonIsDisplayed(WebDriver driver, int seconds){
-        SeleniumUtil.waitForElementToBeVisible(driver,btn_main_menu, seconds);
-        return btn_main_menu.isDisplayed();
+    public boolean validateIfLoginIsDisplayed(WebDriver driver, int seconds){
+        SeleniumUtil.waitForElementToBeVisible(driver,btn_login, seconds);
+        return btn_login.isDisplayed();
     }
 
-    public void clickHamburgerMenu(){
-        btn_main_menu.click();
+    public void clickLoginButton(){
+        btn_login.click();
     }
 
-    public void clickPayeesMenuOption(WebDriver driver, int seconds){
-        SeleniumUtil.waitForElementToBeVisible(driver,btn_main_menu_payees, seconds);
-        btn_main_menu_payees.click();
+    public void clickPricingButton(){
+        btn_pricing.click();
     }
 
-    public void clickPayOrTransferMenuOption(WebDriver driver, int seconds){
-        SeleniumUtil.waitForElementToBeVisible(driver,btn_main_menu_pay_or_transfer, seconds);
-        btn_main_menu_pay_or_transfer.click();
-    }
 }
